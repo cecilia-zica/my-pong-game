@@ -2,7 +2,7 @@ from turtle import Turtle
 
 SCREEN_HEIGHTT = 600
 ALIGNMENT = "center"
-FONT = ("Courier", 20, "bold")
+FONT = ("Courier New", 36, "bold")
 
 class Scoreboard(Turtle):
     def __init__(self):

@@ -113,7 +113,7 @@ while game_is_on:
         ball.bounce_x()
 
     # - - - Right Paddle - - -
-    if ball.distance(paddle_right) < 50 and ball.xcor() > 320 and ball.x_move > 0:
+    elif ball.distance(paddle_right) < 50 and ball.xcor() > 320 and ball.x_move > 0:
         ball.bounce_x()
 
     # --- Detect score (ball of the screen by the horizontal) ---
@@ -127,9 +127,6 @@ while game_is_on:
         scoreboard.point_for_right_player()
 
     screen.update()
-    time.sleep(ball.move_speed)
-
-
 
 
 
