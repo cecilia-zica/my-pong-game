@@ -79,47 +79,55 @@ screen.onkeypress(begin_mov_paddle_right_down, "Down")
 screen.onkeyrelease(stop_mov_paddle_right_down, "Down")
 
 game_is_on = True
-GAME_SPEED = 0.08  # less = faster
 
 while game_is_on:
     # 1. Update the screen to show changes
     screen.update()
 
     # 2. Stop the game for a little time
-    time.sleep(GAME_SPEED)
+    time.sleep(ball.move_speed)# less = faster
 
     # 3. ball moving
     ball.move()
 
     # --- Update Paddle Position Based on State ---
+    # - - - left Paddle - - -
     if paddle_left_moving_up:
         paddle_left.move_up()
     elif paddle_left_moving_down:
         paddle_left.move_down()
 
-    elif paddle_right_moving_up:
+    #  - - - right Paddle - - -
+    if paddle_right_moving_up:
         paddle_right.move_up()
     elif paddle_right_moving_down:
         paddle_right.move_down()
 
     # --- Detect collision with wall ---
-    elif ball.ycor() > 270 or ball.ycor() < -270:
+    if ball.ycor() > 280 or ball.ycor() < -280:
         ball.bounce_y()
 
-    # --- Detect collision with Paddle ---
-    elif ball.distance(paddle_left) < 50 and ball.xcor() < -320\
-            or ball.distance(paddle_right) < 50 and ball.xcor() > 320:
+    # --- Detect collision between Ball and Paddles ---
+    # - - - Left Paddle - - -
+    if ball.distance(paddle_left) < 50 and ball.xcor() < -320 and ball.xcor() < 0:
         ball.bounce_x()
 
-    # --- Detect NOT collision with Paddle ---
-    elif ball.xcor() > 380:
-        ball.reset()
+    # - - - Right Paddle - - -
+    if ball.distance(paddle_right) < 50 and ball.xcor() > 320 and ball.x_move > 0:
+        ball.bounce_x()
+
+    # --- Detect score (ball of the screen by the horizontal) ---
+    if ball.xcor() > 380:
+        ball.reset_position()
         scoreboard.point_for_left_player()
 
 
     elif ball.xcor() < -380:
         ball.reset_position()
         scoreboard.point_for_right_player()
+
+    screen.update()
+    time.sleep(ball.move_speed)
 
 
 

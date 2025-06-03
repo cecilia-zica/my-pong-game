@@ -22,6 +22,9 @@ class Ball(Turtle):
         #5. Starting position
         self.goto(0, 0)
 
+        #6. Speed
+        self.move_speed = 0.1
+
     def move(self):
         new_x = self.xcor() + self.x_move
         new_y = self.ycor() + self.y_move
@@ -34,11 +37,13 @@ class Ball(Turtle):
     def bounce_x(self):
         """Reverses direction on the x-axis when bouncing off the Paddle"""
         self.x_move *= -1
+        self.move_speed *= 0.9
 
     def reset_position(self):
         """Resets the ball position after a point"""
         self.goto(0, 0)
+        self.move_speed = 0.1
         self.bounce_x() #Ball faces first the person who didn't score
-        self.move()
+
 
 
