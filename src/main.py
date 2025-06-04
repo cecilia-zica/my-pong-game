@@ -46,7 +46,7 @@ def begin_mov_paddle_right_down():
     global paddle_right_moving_down
     paddle_right_moving_down = True
 
-# --- Functions for beggin the moviment ---
+# --- Functions for stop the moviment ---
 def stop_mov_paddle_left_up():
     global paddle_left_moving_up
     paddle_left_moving_up = False
